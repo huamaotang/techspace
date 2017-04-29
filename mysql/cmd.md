@@ -1,6 +1,6 @@
-#mysql命令
+# mysql命令
  
-##db
+## db
 ```
 create database db_common;
 ```
