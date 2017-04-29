@@ -14,7 +14,7 @@ use db_common;
 drop database db_common;
 ```
 
-##table
+## table
 ```
 CREATE TABLE `t_sys_config` (
   `autoId` int(11) NOT NULL AUTO_INCREMENT,
@@ -46,28 +46,28 @@ select concat(round(sum(data_length/1024/1024),2),'MB') as data from tables wher
 
 select concat(round(sum(data_length/1024/1024),2),'MB') as data from tables where table_schema='zxq' and table_name='plot_image';
 ```
-##insert
+## insert
 
 ```
 insert into `person` (`Name`,`Status`,`Created`) values ('汤华茂2',1,unix_timestamp( now() ) );
 ```
-##delete
+## delete
 ```
 delete from t_sys_config where autoId=1 limit 1;
 ```
 
-##update
+## update
 ```
 update t_bank set bankHSId='' where bankHSId is null;
 ```
 
-##select
-###like
+## select
+### like
 ```
 SELECT * FROM ajk_membersother WHERE username LIKE '%人%' AND truename REGEXP '^田' AND usermobile REGEXP '2{3}';
 ```
 
-###join
+### join
 
 左联接：左表内容全部显示，右表不满足的全部为null
 
@@ -89,13 +89,13 @@ select * from person p inner join age a on p.Id = a.PersonId;
 ```
 select * from person,age where person.Id = age.PersonId;
 ```
-###union
+### union
 ```
  select Id,Updated from person where Name = 'tanghuamao132' union select PersonId,Updated from age;
 ```
 
 
-##columns
+## columns
 ```
 show columns from t_sys_config\G
 ```
@@ -108,7 +108,7 @@ alter table `t_ta_info` drop column `interfaceType`;
 ```
 alter table t_ta_info change column `taCode` `taCode` char(4) NOT NULL DEFAULT '' COMMENT 'ta代码';
 ```
-##index
+## index
 ```
 show index from t_sys_config;
 ```
@@ -132,7 +132,7 @@ select * from person force index (Primary) limit 100000;
 ```
 select * from person ignore index (Name) where Name='tanghuamao2344';
 ```
-##function
+## function
 unix_timestamp、now
 
 ```
@@ -149,7 +149,7 @@ mysql -uroot --prompt="\d>"
 * \p  当前的TCP/IP端口或套接字文件  
 * \u  你的用户名 
 ```
-##system
+## system
 ```
 SET SQL_SAFE_UPDATES = 0;
 ```
