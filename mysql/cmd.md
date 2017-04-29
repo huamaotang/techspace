@@ -1,5 +1,4 @@
 # mysql命令
-* db(#db)
  
 ## db
 ```
@@ -13,6 +12,9 @@ use db_common;
 ```
 ```
 drop database db_common;
+```
+```
+mysql -h10.21.200.162 -ugeneral -pdb@yijie --default-character-set=utf8 --prompt="\h@\d>"
 ```
 
 ## table
@@ -60,6 +62,9 @@ delete from t_sys_config where autoId=1 limit 1;
 ## update
 ```
 update t_bank set bankHSId='' where bankHSId is null;
+```
+```
+replace into web_manageurl (pid,pingtai,url) VALUES (2,'1','2')
 ```
 
 ## select
@@ -133,11 +138,33 @@ select * from person force index (Primary) limit 100000;
 ```
 select * from person ignore index (Name) where Name='tanghuamao2344';
 ```
+```
+REPAIR TABLE tbl_name QUICK;
+```
 ## function
 unix_timestamp、now
 
 ```
 insert into `person` (`Name`,`Status`,`Created`) values ('汤华茂2',1,unix_timestamp( now() ) );
+```
+avg
+
+```
+select avg(Id) from person;
+```
+```
+select * from person where Id = (select max(Id) from person );
+```
+```
+select * from person where Id = (select min(Id) from person );
+```
+```
+select sum(Id) from person;
+```
+```
+SELECT pid,count(distinct(pingtai)),pingtai, sid, url FROM web_manageurl GROUP BY pingtai
+```
+	
 ##prompt
 设置提示符
 
