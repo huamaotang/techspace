@@ -176,8 +176,9 @@ mysql -uroot --prompt="\d>"
 * \h  服务器主机  
 * \p  当前的TCP/IP端口或套接字文件  
 * \u  你的用户名 
-```
+
 ## system
+
 ```
 SET SQL_SAFE_UPDATES = 0;
 ```
