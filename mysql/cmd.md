@@ -165,7 +165,7 @@ select sum(Id) from person;
 SELECT pid,count(distinct(pingtai)),pingtai, sid, url FROM web_manageurl GROUP BY pingtai
 ```
 	
-##prompt
+## prompt
 设置提示符
 
 ```
