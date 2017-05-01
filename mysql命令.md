@@ -141,6 +141,10 @@ select * from person ignore index (Name) where Name='tanghuamao2344';
 ```
 REPAIR TABLE tbl_name QUICK;
 ```
+## explain
+```
+explain select sql_no_cache * from person where Id>0 and Id<1000000 order by created desc;
+```
 ## function
 unix_timestamp、now
 
