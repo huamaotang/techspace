@@ -209,6 +209,7 @@ rs.status()
 ```
 
 ![](https://github.com/huamaotang/techspace/blob/master/images/relpset.png?raw=true)
+
 ## oplog
 ```
 主节点的操作记录，operation log简称
