@@ -127,7 +127,6 @@ git config --global pull.rebase=true
 git config --global user.name Tom
 git config --global user.email tanghuamao@noahwm.com
 ```
-<<<<<<< HEAD
 ## 合并代码，解决冲突
 
 ```
@@ -148,7 +147,29 @@ git rebase master
 ```
 git add -u
 ```
+继续合并
+
+```
+git rebase --continue
+```
+忽略合并的分支，使用当前指向分支的内容
+
+```
+git rebase --skip
+```
+忽略本次合并，回到合并之前的分支
+
+```
+git rebase --abort
+```
+注意：
+
+```
+rebase和merge的区别：
+	* rebase 不产生新的提交记录，保证整个分支上是一条完整的直线
+	* merge 会产生新的一次提交，除非fast-forward，否则都将产生一次新的提交
+	* 建议pull代码的时候使用rebase，合并master或者其他分支时使用merge
+
+```
 
 
-=======
->>>>>>> master
