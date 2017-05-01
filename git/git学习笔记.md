@@ -127,3 +127,25 @@ git config --global pull.rebase=true
 git config --global user.name Tom
 git config --global user.email tanghuamao@noahwm.com
 ```
+## 合并代码，解决冲突
+
+```
+git pull
+```
+
+```
+git merge --no-ff master
+```
+
+```
+git rebase master
+```
+
+因pull=fetch+rebase或者pull=fetch+merge
+假设为rebase，若存在文件冲突，当你解决完冲突之后，切记使用:
+
+```
+git add -u
+```
+
+
