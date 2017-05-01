@@ -181,7 +181,7 @@ rs.slaveOk() //从库默认不能写
 db.sources.insert({host:’127.0.0.1:10000’,source:'main'})
 ```
 
-![](https://github.com/huamaotang/techspace/blob/master/images/masterSlave.png?raw=true)
+![主从复制](https://github.com/huamaotang/techspace/blob/master/images/masterSlave.png?raw=true)
 
 ## 副本集
 ### 描述
@@ -208,7 +208,7 @@ rs.slaveOk()
 rs.status()
 ```
 
-![](https://github.com/huamaotang/techspace/blob/master/images/relpset.png?raw=true)
+![副本集](https://github.com/huamaotang/techspace/blob/master/images/relpset.png?raw=true)
 
 ## oplog
 ```
