@@ -180,6 +180,7 @@ slave：./bin/mongod --dbpath slave --port 10001 --slave
 rs.slaveOk() //从库默认不能写
 db.sources.insert({host:’127.0.0.1:10000’,source:'main'})
 ```
+(https://github.com/huamaotang/techspace/blob/master/images/masterSlave.png?raw=true)
 ## 副本集
 ### 描述
 ```
