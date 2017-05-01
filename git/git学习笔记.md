@@ -127,6 +127,7 @@ git config --global pull.rebase=true
 git config --global user.name Tom
 git config --global user.email tanghuamao@noahwm.com
 ```
+<<<<<<< HEAD
 ## 合并代码，解决冲突
 
 ```
@@ -149,3 +150,5 @@ git add -u
 ```
 
 
+=======
+>>>>>>> master
