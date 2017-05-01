@@ -180,7 +180,9 @@ slave：./bin/mongod --dbpath slave --port 10001 --slave
 rs.slaveOk() //从库默认不能写
 db.sources.insert({host:’127.0.0.1:10000’,source:'main'})
 ```
-(https://github.com/huamaotang/techspace/blob/master/images/masterSlave.png?raw=true)
+
+![](https://github.com/huamaotang/techspace/blob/master/images/masterSlave.png?raw=true)
+
 ## 副本集
 ### 描述
 ```
@@ -205,6 +207,8 @@ rs.slaveOk()
 查看状态
 rs.status()
 ```
+
+![](https://github.com/huamaotang/techspace/blob/master/images/relpset.png?raw=true)
 ## oplog
 ```
 主节点的操作记录，operation log简称
