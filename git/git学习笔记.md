@@ -75,6 +75,9 @@ git branch -a
 ```
 git push -u origin_github master     （第一次提交）
 git push origin_github master
+git push origin test:master         // 提交本地test分支作为远程的master分支
+git push origin test:test              // 提交本地test分支作为远程的test分支
+git push origin :test              // 刚提交到远程的test将被删除，但是本地还会保存的，不用担心
 ```
 创建dev分支，然后切换到dev分支
 
@@ -171,5 +174,5 @@ rebase和merge的区别：
 	* 建议pull代码的时候使用rebase，合并master或者其他分支时使用merge
 
 ```
-
-
+## 学习地址
+[http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
