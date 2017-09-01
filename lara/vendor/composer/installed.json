@@ -1312,5 +1312,55 @@
             "orm",
             "sql"
         ]
+    },
+    {
+        "name": "illuminate/view",
+        "version": "v5.5.0",
+        "version_normalized": "5.5.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/view.git",
+            "reference": "dc4c42f5ec8b9713b47daf2676095cd1bae31892"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/view/zipball/dc4c42f5ec8b9713b47daf2676095cd1bae31892",
+            "reference": "dc4c42f5ec8b9713b47daf2676095cd1bae31892",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/container": "5.5.*",
+            "illuminate/contracts": "5.5.*",
+            "illuminate/events": "5.5.*",
+            "illuminate/filesystem": "5.5.*",
+            "illuminate/support": "5.5.*",
+            "php": ">=7.0",
+            "symfony/debug": "~3.3"
+        },
+        "time": "2017-08-25T13:20:17+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.5-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\View\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylor@laravel.com"
+            }
+        ],
+        "description": "The Illuminate View package.",
+        "homepage": "https://laravel.com"
     }
 ]
