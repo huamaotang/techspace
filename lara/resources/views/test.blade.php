@@ -1,2 +1,1 @@
-
-{{ $data['id'] }}
+<?php var_dump($id);?>

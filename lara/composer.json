@@ -3,7 +3,8 @@
 		"illuminate/routing": "*",
 		"illuminate/events": "*",
 		"illuminate/database": "*",
-		"illuminate/view": "*"
+		"illuminate/view": "*",
+		"illuminate/Foundation": "*"
 	},
 	"autoload": {
 		"psr-4": {
