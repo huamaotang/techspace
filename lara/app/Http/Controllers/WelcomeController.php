@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use Illuminate\Container\Container;
 
 class WelcomeController {
 
@@ -19,5 +20,16 @@ class WelcomeController {
 		$student = Student::first();
 		$data = $student->getAttributes();
 		return json_encode($data);
+	}
+
+	public function test()
+	{
+		$student = Student::first();
+		$data = $student->getAttributes();
+		$app = Container::getInstance();
+
+		$factory = $app->make('view');
+
+		return $factory->make('test')->with('data', $data);
 	}
 }

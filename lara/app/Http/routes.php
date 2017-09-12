@@ -6,3 +6,5 @@ $app['router']->get('/', function () {
 $app['router']->get('welcome', 'App\Http\Controllers\WelcomeController@index');
 
 $app['router']->get('welcome/get', 'App\Http\Controllers\WelcomeController@get');
+
+$app['router']->get('welcome/test', 'App\Http\Controllers\WelcomeController@test');
