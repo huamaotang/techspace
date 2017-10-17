@@ -1,31 +1,58 @@
 <?php
-use Illuminate\Database\Capsule\Manager;
-use Illuminate\Support\Fluent;
 
-require __DIR__ . '/../vendor/autoload.php';
+/**
+ * Laravel - A PHP Framework For Web Artisans
+ *
+ * @package  Laravel
+ * @author   Taylor Otwell <taylor@laravel.com>
+ */
 
-$app = new Illuminate\Container\Container;
+/*
+|--------------------------------------------------------------------------
+| Register The Auto Loader
+|--------------------------------------------------------------------------
+|
+| Composer provides a convenient, automatically generated class loader for
+| our application. We just need to utilize it! We'll simply require it
+| into the script here so that we don't have to worry about manual
+| loading any of our classes later on. It feels great to relax.
+|
+*/
 
-Illuminate\Container\Container::setInstance($app);
+require __DIR__.'/../bootstrap/autoload.php';
 
-with(new Illuminate\Events\EventServiceProvider($app))->register();
-with(new Illuminate\Routing\RoutingServiceProvider($app))->register();
+/*
+|--------------------------------------------------------------------------
+| Turn On The Lights
+|--------------------------------------------------------------------------
+|
+| We need to illuminate PHP development, so let us turn on the lights.
+| This bootstraps the framework and gets it ready for use, then it
+| will load up this application so that we can run it and send
+| the responses back to the browser and delight our users.
+|
+*/
 
-$manage = new Manager();
-$manage->addConnection(require '../config/database.php');
-$manage->bootEloquent();
+$app = require_once __DIR__.'/../bootstrap/app.php';
 
-$app->instance('config', new Fluent());
-$app['config']['view.compiled'] = "\\Users\\huamaotang\\techspace\\lara\\storage\\framework\\views";
-$app['config']['view.paths'] = "\\Users\\huamaotang\\techspace\\lara\\resources\\views";
-with(new Illuminate\View\ViewServiceProvider($app))->register();
-with(new Illuminate\Filesystem\FilesystemServiceProvider($app))->register();
+/*
+|--------------------------------------------------------------------------
+| Run The Application
+|--------------------------------------------------------------------------
+|
+| Once we have the application, we can handle the incoming request
+| through the kernel, and send the associated response back to
+| the client's browser allowing them to enjoy the creative
+| and wonderful application we have prepared for them.
+|
+*/
 
-require __DIR__ . '/../app/Http/routes.php';
+$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
-$request = Illuminate\Http\Request::createFromGlobals();
-
-$response = $app['router']->dispatch($request);
+$response = $kernel->handle(
+    $request = Illuminate\Http\Request::capture()
+);
 
 $response->send();
 
+$kernel->terminate($request, $response);
