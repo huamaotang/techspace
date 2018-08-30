@@ -23,7 +23,7 @@ Key/Value存储：应用程序可用根据自己的需要使用Consul的层级�
 ```
 Consul是一个分布式高可用的系统.
 使用基于 Serf 实现的 gossip 协议来管理从属关系，失败检测，事件广播等。
-gossip 协议是一个神奇的一致性协议
+gossip 协议是一个一致性协议
 
 ```
 ![consul](https://raw.githubusercontent.com/huamaotang/techspace/master/images/consul2.png)
@@ -77,7 +77,12 @@ Protobuf是Protocol Buffers的简称，它是Google公司开发的一种数据�
 具生成代码并实现将结构化数据序列化的功能。但是我们更关注的是Protobuf作为接口规范的描述语言，可以作为设计安全的跨语言PRC接口的基础工具。
 ```
 ### rest接口
-![]()
+![](https://raw.githubusercontent.com/huamaotang/techspace/master/images/ch4.6-1-grpc-gateway.png)
+
+### 执行命令
+```
+protoc --go_out=plugins=grpc:. hello.proto
+```
 
 
 ### 参考链接
