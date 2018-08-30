@@ -90,6 +90,8 @@ protoc --go_out=plugins=grpc:. hello.proto
 
 [consul指南](https://book-consul-guide.vnzmi.com/11_consul_template.html)
 
+[consul架构](https://skyao.gitbooks.io/learning-consul/content/docs/internals/architecture.html)
+
 [Go语言高级编程](https://chai2010.gitbooks.io/advanced-go-programming-book/content/ch4-rpc/ch4-02-pb-intro.html)
 
 [consul与etcd、istio等比较](https://www.consul.io/intro/vs/index.html)
