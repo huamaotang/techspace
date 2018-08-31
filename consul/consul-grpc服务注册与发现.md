@@ -15,6 +15,7 @@
 ```
 
 ### 关键特性
+
 ```
 服务调用: client 直连 server 调用服务
 
@@ -65,11 +66,14 @@ RPC / 远程程序调用
 
 ```
 
+
 ### 总体架构
 ![consul架构图](https://raw.githubusercontent.com/huamaotang/techspace/master/images/consul.png)
 
+
 ### 内部架构
 ![consul](https://raw.githubusercontent.com/huamaotang/techspace/master/images/consul2.png)
+
 
 ### 常用命令
 ```
@@ -124,13 +128,16 @@ Protobuf是Protocol Buffers的简称，它是Google公司开发的一种数据�
 具生成代码并实现将结构化数据序列化的功能。但是我们更关注的是Protobuf作为接口规范的描述语言，可以作为设计安全的跨语言PRC接口的基础工具。
 ```
 
-### rest接口
-![](https://raw.githubusercontent.com/huamaotang/techspace/master/images/ch4.6-1-grpc-gateway.png)
-
 ### 执行命令
+
 ```
 protoc --go_out=plugins=grpc:. hello.proto
 ```
+
+### rest接口
+![](https://raw.githubusercontent.com/huamaotang/techspace/master/images/ch4.6-1-grpc-gateway.png)
+
+
 
 
 ### 参考链接
