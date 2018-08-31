@@ -45,12 +45,14 @@ client是转发所有RPC请求到服务器的agent。client相对而言是无状
 的唯一活动是参与LAN gossip 池。这只需要极轻微的资源并只消耗少量的网络带宽。
 
 Server / 服务器
-server是一个职责扩展的agent，包括参与Raft团队，维持集群状态，响应RPC查询，和其他数据中心交互WAN gossip和转发请求到leader或者远程数据中心。
+server是一个职责扩展的agent，包括参与Raft团队，维持集群状态，响应RPC查询，和其
+他数据中心交互WAN gossip和转发请求到leader或者远程数据中心。
 
 Datacenter / 数据中心
 虽然数据中心的定义看上去很明显，依然还是有些细节必须考虑。例如，在EC2中，多个可到
 达的zone是否考虑组成一个单一的数据中心？我们定义数据中心为这样的网络环境：私有，低
-延迟，高带宽。这排除了跨越公共英特网的通讯，但是，在我们看来，在单个EC2 区域中的多个可到达zone可以考虑为单个数据中心的一部分。
+延迟，高带宽。这排除了跨越公共英特网的通讯，但是，在我们看来，在单个EC2 区域中的多
+个可到达zone可以考虑为单个数据中心的一部分。
 
 Consensus / 一致性
 在我们的文档中，使用 consensus /一致性 来表示不仅有对被选举的leader的认可，而且
@@ -58,7 +60,9 @@ Consensus / 一致性
 制状态机的一致性。在 Wikipedia 上有Consensus的更多详细内容，而我们的实现在 这里 描述。
 
 Gossip
-Consul构建在Serf之上，Serf提供完整的用于多个用途的 gossip 协议. Serf 提供成员关系，失败检测，还有事件广播。我们对这些的使用在 gossip文档 中有更多描述。这足以了解到gossip包含了随机节点到节点(node-to-node)通讯, 首选UDP。
+Consul构建在Serf之上，Serf提供完整的用于多个用途的 gossip 协议. Serf 提供成员
+关系，失败检测，还有事件广播。我们对这些的使用在 gossip文档 中有更多描述。这足以
+了解到gossip包含了随机节点到节点(node-to-node)通讯, 首选UDP。
 
 LAN Gossip / 局域网 Gossip
 和局域网gossip池相关，包含在同一个局域网或者数据中心中的所有节点。
