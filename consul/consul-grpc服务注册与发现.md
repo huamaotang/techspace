@@ -133,8 +133,10 @@ C++, Node.js, Python, Ruby, Objective-C, PHP 和 C# 支持.
 
 ### Protobuf
 ```
-Protobuf是Protocol Buffers的简称，它是Google公司开发的一种数据描述语言，并于2008年对外开源。Protobuf刚开源时的定位类似于XML、JSON等数据描述语言，通过附带工
-具生成代码并实现将结构化数据序列化的功能。但是我们更关注的是Protobuf作为接口规范的描述语言，可以作为设计安全的跨语言PRC接口的基础工具。
+Protobuf是Protocol Buffers的简称，它是Google公司开发的一种数据描述语言，并于
+2008年对外开源。Protobuf刚开源时的定位类似于XML、JSON等数据描述语言，通过附带工
+具生成代码并实现将结构化数据序列化的功能。但是我们更关注的是Protobuf作为接口规范
+的描述语言，可以作为设计安全的跨语言PRC接口的基础工具。
 ```
 
 ### 执行命令
@@ -144,9 +146,14 @@ protoc --go_out=plugins=grpc:. hello.proto
 ```
 
 ### rest接口
+
+```
+protoc -I/usr/local/include -I. -I$GOPATH/src -I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis --plugin=protoc-gen-grpc-gateway=$GOPATH/bin/protoc-gen-grpc-gateway  --grpc-gateway_out=logtostderr=true:. ./gateway-test.proto
+
+
+```
+
 ![](https://raw.githubusercontent.com/huamaotang/techspace/master/images/ch4.6-1-grpc-gateway.png)
-
-
 
 
 ### 参考链接
@@ -162,9 +169,18 @@ protoc --go_out=plugins=grpc:. hello.proto
 
 [grpc官方中文文档](http://doc.oschina.net/grpc?t=60136)
 
-##待跟进
-```
+[The Go Programming Language](https://books.studygolang.com/gopl-zh/)
+
+## 待跟进
+
 1、consul 集群搭建
-2、
-```
+
+2、[grpc-gateway实例](https://github.com/micro/examples/tree/master/grpc)
+
+3、[ORM之gorose](https://gohouse.github.io/gorose/dist/zh-cn/index.html)
+
+4、校验器
+
+5、
+
 
