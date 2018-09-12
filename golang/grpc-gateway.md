@@ -25,6 +25,7 @@ protoc-gen-grpc-gateway
 ## 定义路由扩展元信息
 
 ```
+
 syntax = "proto3";
 
 package helloworld;
@@ -66,6 +67,7 @@ service Greeter {
               };
   }
 }
+
 ```
 
 ## 执行生成器
@@ -105,6 +107,7 @@ func main() {
 	defer cancel()
 
 	mux := runtime.NewServeMux()
+
 	opts := []grpc.DialOption{grpc.WithInsecure()}
 	err := helloworld.RegisterGreeterHandlerFromEndpoint(
 		ctx, mux, "localhost:5000",
@@ -114,10 +117,20 @@ func main() {
 		log.Fatal(err)
 	}
 
+	err = helloworld.RegisterGreeterExtHandlerFromEndpoint(
+		ctx, mux, "localhost:5001",
+		opts,
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	http.ListenAndServe(":8080", mux)
 }
 ```
+
 ### server
+
 ```
 package main
 
@@ -130,9 +143,10 @@ import (
 	pb "lib/helloworld"
 	"google.golang.org/grpc/reflection"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/gohouse/gorose"
 	"fmt"
-	)
+	_ "database/sql/driver"
+	"lib/models/gorose"
+)
 
 const (
 	port = ":5000"
@@ -143,55 +157,29 @@ type server struct{}
 
 // SayHello implements helloworld.GreeterServer
 func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
-	conn, err := gorose.Open(map[string]string{
-		"host": "127.0.0.1",
-		"port": "3306",
-		"database": "thm",
-		"username": "root",
-		"password": "root",
-		"prefix": "",
-		"driver": "mysql",
-		"charset": "utf8",
-		"protocol": "tcp",
-	})
+	db, err := gorose.ConnecctDB();
 	if err != nil {
-		fmt.Println(err)
-		return nil, err
+		log.Fatal("error")
 	}
 
-	defer conn.Close()
-
-	db := conn.NewDB()
-	User := db.Table("user")
+	User := db.Table("users")
 
 	name := in.Name
 	xx, err := User.Where("name", name).Limit(1).Get()
 	yy := db.JsonEncode(xx)
+	fmt.Println(yy)
 	return &pb.HelloReply{Message: yy}, nil
 }
 
 func (s *server) SetAge(ctx context.Context, in *pb.SetAgeRequest) (*pb.SetAgeReply, error) {
-	conn, err := gorose.Open(map[string]string{
-		"host": "127.0.0.1",
-		"port": "3306",
-		"database": "thm",
-		"username": "root",
-		"password": "root",
-		"prefix": "",
-		"driver": "mysql",
-		"charset": "utf8",
-		"protocol": "tcp",
-	})
+	db, err := gorose.ConnecctDB();
 	if err != nil {
-		fmt.Println(err)
-		return nil, err
+		log.Fatal("error")
 	}
 
-	defer conn.Close()
-
-	db := conn.NewDB()
 	uid := in.Uid
-	db.Execute("update user set name='xxxxx' where uid=? limit 1", uid)
+	name := in.Name
+	db.Execute("update users set name=? where uid=? limit 1", name, uid)
 	return &pb.SetAgeReply{Message:"success"}, nil
 }
 
@@ -208,6 +196,7 @@ func main() {
 		log.Fatalf("failed to serve: %v", err)
 	}
 }
+
 ```
 
 ## 启动服务
@@ -224,12 +213,15 @@ curl -d '{"uid": 589642,"name":"tanaa"}' http://localhost:8081/post
 
 ## 工作流程
 ![ Grpc-Gateway工作流程](https://raw.githubusercontent.com/huamaotang/techspace/master/images/ch4.6-1-grpc-gateway.png)
- 						
- 						
+ 						 						
 ## 问题
 
 ```
 gateway与server 端口之间的关系，一对一？一对多？
 ``` 						
 ## 参考链接
-[git地址](https://github.com/grpc-ecosystem/grpc-gateway/tree/58f78b988bc393694cef62b92c5cde77e4742ff5)
+[grpc-gateway git地址](https://github.com/grpc-ecosystem/grpc-gateway/tree/58f78b988bc393694cef62b92c5cde77e4742ff5)
+
+[gorose git地址](https://github.com/gohouse/gorose)
+
+[gRPC-gateway 源码阅读](https://jiajunhuang.com/articles/2018_08_08-grpc_gateway_source_code.md.html)

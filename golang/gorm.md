@@ -38,85 +38,66 @@ type User struct {
 
 ## CRUD操作
 ```
-package main
+package gorm
 
 import (
 	"github.com/jinzhu/gorm"
-	"fmt"
-	_ "github.com/go-sql-driver/mysql"
 	"time"
-	"math/rand"
-)
+	"log"
+	_ "github.com/go-sql-driver/mysql"
+	)
+
+var GDB *gorm.DB
 
 type User struct {
-	Uid int64 `gorm:"column:uid" json:"uid"`
+	Uid int64 `gorm:"column:uid;PRIMARY_KEY" json:"uid"`
 	Name string `gorm:"column:name" json:"name"`
 	Age int `gorm:"column:age" json:"age"`
 	Gid int `gorm:"column:gid" json:"gid"`
 	CreateTime int64 `gorm:"column:create_time" json:"create_time"`
-	LastTime *time.Time `gorm:"column:last_time" json:"last_time"`
+	LastTime *time.Time `gorm:"column:last_time;type:timestamp"`
 }
 
 func init() {
-	rand.Seed(time.Now().UnixNano())
-}
-
-func main() {
-	db, err := gorm.Open("mysql", "root:root@tcp(127.0.0.1:3306)/thm?charset=utf8&parseTime=true&&loc=Asia%2FShanghai")
+	DB, err := gorm.Open("mysql", "root:root@tcp(127.0.0.1:3306)/thm?charset=utf8&parseTime=true&&loc=Asia%2FShanghai")
 	if err != nil {
-		fmt.Printf("%s", err.Error())
-		return
+		log.Fatal(err)
 	}
-	fmt.Println("connect success")
+	GDB = DB
+}
 
+func GetByUid(uid int) (User) {
 	var xx User
-	db.Order("Uid desc").First(&xx)
-	fmt.Println(xx)
-
-	for i := 0; i < 1; i++ {
-		addUser := User{Name:RandStr(5), Age:rand.Intn(100), Gid:rand.Intn(100000) + 100000, CreateTime:time.Now().Unix()}
-		db.Save(&addUser)
-	}
-
-	var yy User
-	db.Where("name = ?", "igAlb").Find(&yy)
-	fmt.Println(yy)
-
-	var zz User
-	db.Not("name", []string{"igAlb", "HtjZT"}).Find(&zz)
-	fmt.Println(zz)
-
-	yy.Name = "tt"
-	yy.Age = 28
-	db.Save(&yy)
-	fmt.Println(yy)
-
-	db.Delete(User{}, "name = ?", "tt")
-
-	defer db.Close()
+	GDB.Order("Uid desc").Where("uid=?", uid).First(&xx)
+	return xx
 }
 
-func RandStr(strlen int) string {
-	data := make([]byte, strlen)
-	var num int
-	for i := 0; i < strlen; i++ {
-		num = rand.Intn(57) + 65
-		for {
-			if num>90 && num<97 {
-				num = rand.Intn(57) + 65
-			} else {
-				break
-			}
-		}
-		data[i] = byte(num)
-	}
-	return string(data)
+func AddUser(name string, age int, gid int) bool {
+	addUser := User{Name:name, Age:age, Gid:gid, CreateTime:time.Now().Unix()}
+	GDB.Save(&addUser)
+
+	return true
 }
+
+func UpdateUser(uid int) bool {
+	user := GetByUid(uid)
+	user.Name = "xxxxx"
+	GDB.Save(&user)
+	return true
+}
+
+func DelUser(uid int) bool {
+	GDB.Delete(User{}, "uid=?", uid)
+	return true
+}
+
 
 
 ```
 
 ## 参考链接
 [GORM 指南](http://gorm.io/zh_CN/docs/)
+
+[GORM 中文文档](http://gorm.book.jasperxu.com)
 
 [Go语言中使用gorm小结_Golang](https://yq.aliyun.com/ziliao/92405)
