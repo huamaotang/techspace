@@ -1,4 +1,4 @@
-#grpc-gateway + gorose 实现
+# grpc-gateway + gorose 实现
 
 ## 概念
 ```
