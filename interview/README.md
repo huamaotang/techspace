@@ -7,6 +7,7 @@
 ### 深度、广度 优先
 
 ## Golang
+### defer
 ### context
 ### goroutine
 ### channel
