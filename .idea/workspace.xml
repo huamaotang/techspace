@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7cd2f4e3-4616-4634-a08a-b8eff161d6a8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/interview/golang/graceful-restart.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/interview/golang/grpc.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/interview/work/pay.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/interview/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview/arithmetic/sort.md" beforeDir="false" afterPath="$PROJECT_DIR$/interview/arithmetic/sort.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interview/golang/graceful-restart.md" beforeDir="false" afterPath="$PROJECT_DIR$/interview/golang/graceful-restart.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
