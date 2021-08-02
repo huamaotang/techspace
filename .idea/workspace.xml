@@ -2,16 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7cd2f4e3-4616-4634-a08a-b8eff161d6a8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/keypoint/arithmetic/demo/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interview/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/keypoint/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interview/arithmetic/sort.md" beforeDir="false" afterPath="$PROJECT_DIR$/keypoint/arithmetic/sort.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interview/golang/context.md" beforeDir="false" afterPath="$PROJECT_DIR$/keypoint/golang/context.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interview/golang/graceful-restart.md" beforeDir="false" afterPath="$PROJECT_DIR$/keypoint/golang/graceful-restart.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interview/golang/grpc.md" beforeDir="false" afterPath="$PROJECT_DIR$/keypoint/golang/grpc.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interview/work/pay.md" beforeDir="false" afterPath="$PROJECT_DIR$/keypoint/work/pay.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
   <component name="GOROOT" url="file:///usr/local/Cellar/go/1.15.5/libexec" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
   </component>
   <component name="ProjectId" id="1stfG4gq8ZNU6tK3KN7KA636gu5" />
   <component name="ProjectLevelVcsManager">
@@ -22,6 +39,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -41,8 +59,35 @@
       <recent name="$PROJECT_DIR$/interview/golang" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="techspace" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/keypoint/arithmetic/demo/main.go" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build main.go" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
