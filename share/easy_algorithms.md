@@ -38,6 +38,21 @@ public static Integer gcd(Integer a, Integer b) {
 
 ## 快速排序
 
+#### 定义
+
+- 快速排序（英语：Quicksort），又称分区交换排序（英语：partition-exchange sort），简称「快排」，是一种被广泛运用的排序算法。
+
+- 工作原理是通过 分治 的方式来将一个数组排序
+
+#### 过程
+
+```
+快速排序分为三个过程：
+1.将数列划分为两部分（要求保证相对大小关系）
+2.递归到两个子序列中分别进行快速排序
+3.不用合并，因为此时数列已经完全有序
+```
+
 #### 实现
 
 ```java
@@ -70,3 +85,10 @@ public static void quickSort(List<Integer> valueList, Integer start, Integer end
         valueList.set(high, tmp);
     }
 ```
+
+#### 性质
+
+- 不稳定排序，相等元素的相对顺序可能会改变
+- 在实践中，几乎不可能达到最坏情况，而快速排序的内存访问遵循局部性原理，所以多数情况下快速排序的表现大幅优于堆排序等其他复杂度为 O(nlogn) 的排序算法
+
+<img title="" src="../images/quick_sort_omicron.png" alt="" width="671">
