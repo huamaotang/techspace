@@ -1,6 +1,6 @@
-# 几个简单算法
 
-                    <img title="" src="https://github.com/huamaotang/techspace/blob/master/images/algorithms-4.png?raw=true" alt="" width="467">
+
+                    <img title="" src="../images/algorithms_4.0.png" alt="" width="399">
 
 ## 知识点
 
@@ -10,9 +10,9 @@
 
 - 大多数算法都需要适当地组织数据，而为了组织数据就产生了数据结构。数据结构也是计算机科学研究的核心对象，它和算法的关系非常密切
 
-## 欧几里得算法
+## 欧几里得
 
-#### 自然语言描述
+#### 描述
 
 ```textile
 计算两个非负整数p和q的最大公约数：若q是0，则最大公约数为p。否则，将p除以
@@ -22,7 +22,7 @@ q得到余数r，p和q的最大公约数即为q和r的最大公约数
 
 #### 过程
 
-<img title="" src="https://github.com/huamaotang/techspace/blob/master/images/eu-progress.png?raw=true" alt="" width="667">
+<img title="" src="../images/eu-progress.png" alt="">
 
 #### 实现
 
@@ -34,29 +34,37 @@ public static Integer gcd(Integer a, Integer b) {
 
 #### 性质
 
-<img src="https://github.com/huamaotang/techspace/blob/master/images/eu-omicron.png?raw=true">
+<img title="" src="../images/eu-omicron.png" alt="">
 
 ## 快速排序
 
-#### 定义
+#### 描述
 
-- 快速排序（英语：Quicksort），又称分区交换排序（英语：partition-exchange sort），简称「快排」，是一种被广泛运用的排序算法。
+- 快速排序（英语：Quicksort），又称分区交换排序（英语：partition-exchange sort），简称「快排」，是一种被广泛运用的排序算法
 
-- 工作原理是通过 分治 的方式来将一个数组排序
+- 工作原理是通过 分治 的方式来将一个数组排序 
 
 #### 过程
 
-```
-快速排序分为三个过程：
-1.将数列划分为两部分（要求保证相对大小关系）
-2.递归到两个子序列中分别进行快速排序
-3.不用合并，因为此时数列已经完全有序
-```
+- 将数列划分为两部分（要求保证相对大小关系）
+
+- 递归到两个子序列中分别进行快速排序
+
+- 不用合并，因为此时数列已经完全有序
 
 #### 实现
 
 ```java
-public static void quickSort(List<Integer> valueList, Integer start, Integer end) {
+/*
+理解：
+1、取其中一个元素作为分区点pivot，遍历无序列表中其它数据，将比pivot小的放在左边，大的放在右边，重排无序序列并计算分区点
+2、分别递归除分区点的左边、右边无序列表，重排无序序列并计算分区点，直至左右边只剩一个元素，元素也就排序好了
+
+将比pivot小的放在左边，大的放在右边：
+1、从i=start+1索引开始，如果值小于分区点，则j=start,j+1与i的值互换，j++
+2、将第一个，也就是基准值与第j个元素互换，因为第j个值肯定小于等于第一个值，并返回j
+*/
+    public static void quickSort(List<Integer> valueList, Integer start, Integer end) {
         if (start >= end) {
             return;
         }
@@ -92,3 +100,223 @@ public static void quickSort(List<Integer> valueList, Integer start, Integer end
 - 在实践中，几乎不可能达到最坏情况，而快速排序的内存访问遵循局部性原理，所以多数情况下快速排序的表现大幅优于堆排序等其他复杂度为 O(nlogn) 的排序算法
 
 <img title="" src="../images/quick_sort_omicron.png" alt="" width="671">
+
+## 动态连通性
+
+#### 描述
+
+- 设计一个数据结构来保存已知的所有整数对的足够多的信息，并且用它来判断新的整数对是否相连
+
+- 触点：单个对象的网络方面用语
+
+- 连接：整数对称为连接
+
+- 等价类：p、q相连，q、r相连，则p、q、r属于同一个等价类
+
+- 连通分量：等价类称为连通分量，简称分量
+
+<img title="" src="../images/dce.png" alt="">
+
+<img title="" src="../images/mce.png" alt="">
+
+<img title="" src="../images/union_find_api.png" alt="">
+
+#### quick-find
+
+###### 过程
+
+- 保证当且仅当id[p]等于id[q]时，p、q是连通的。即在同一个连通分量中，所有触点在id[]中的值必须相同
+
+###### 实现
+
+<img title="" src="../images/qf_road.png" alt="">
+
+```java
+public class QuickFind {
+    // 分量数量
+    private Integer count;
+
+    // 分量Id（以触点作为索引）
+    private List<Integer> idList;
+
+    public void UF(Integer N) {
+        count = N;
+        idList = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            idList.add(i, i);
+        }
+    }
+
+    public Integer find(Integer key) {
+        return idList.get(key);
+    }
+
+    public Boolean connected(Integer p, Integer q) {
+        return Objects.equals(find(p), find(q));
+    }
+
+    public void union(Integer p, Integer q) {
+        Integer pID = find(p);
+        Integer qID = find(q);
+        if (Objects.equals(pID, qID)) return;
+        for (int i = 0; i < idList.size(); i++) {
+            if (find(i).equals(pID)) idList.set(i, qID);
+        }
+        count--;
+    }
+
+    public Integer count() {
+        return count;
+    }
+}
+```
+
+###### 性质
+
+<img title="" src="../images/qf_omicron.png" alt="" data-align="inline">
+
+#### quick-union
+
+###### 过程
+
+- 基于相同的数据结构-以触点为索引的id[]数组
+
+- 链接：每个触点所对应的id[]元素都是同一个分量中的另一个触点的名称（或者它自己）
+
+###### 实现
+
+<img title="" src="../images/qu_trace.png" alt="" width="563">
+
+```java
+public class QuickUnion {
+
+    // 分量数量
+    private Integer count;
+
+    // 分量Id（以触点作为索引）
+    private List<Integer> idList;
+
+    public void UF(Integer N) {
+        count = N;
+        idList = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            idList.add(i, i);
+        }
+    }
+
+    public Integer find(Integer i) {
+        while (!i.equals(idList.get(i))) i = idList.get(i);
+        return i;
+    }
+
+    public Boolean connected(Integer p, Integer q) {
+        return Objects.equals(find(p), find(q));
+    }
+
+    public void union(Integer p, Integer q) {
+        Integer pRoot = find(p);
+        Integer qRoot = find(q);
+        if (!pRoot.equals(qRoot)) {
+            idList.set(pRoot, qRoot);
+            count--;
+        }
+    }
+
+    public Integer count() {
+        return count;
+    }
+}
+```
+
+###### 性质
+
+![](../images/qu_worst.png)
+
+#### weight-quick-union
+
+###### 过程
+
+- 与其在union()中随意将一棵树连接到一棵树，现在会记录每棵树的大小并总是将较小的数连接到较大的树上
+
+- 在quick-union基础上，需要增加一个数组和一些代码来记录树中的节点数
+
+###### 实现
+
+<img title="" src="../images/wqu.png" alt="">
+
+<img title="" src="../images/wqu_trace.png" alt="">
+
+```java
+public class WeightQuickUnion {
+
+    // 分量数量
+    private Integer count;
+
+    // 分量Id（以触点作为索引）
+    private List<Integer> idList;
+
+    // 每棵树的元素数量（以触点为索引）
+    private List<Integer> sizeList;
+
+    public void UF(Integer N) {
+        count = N;
+        idList = new ArrayList<>();
+        sizeList = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            idList.add(i, i);
+            sizeList.add(i, 1);
+        }
+    }
+
+    public Integer find(Integer key) {
+        while (!key.equals(idList.get(key))) key = idList.get(key);
+        return key;
+    }
+
+    public Boolean connected(Integer p, Integer q) {
+        return Objects.equals(find(p), find(q));
+    }
+
+    public void union(Integer p, Integer q) {
+        Integer pRoot = find(p);
+        Integer qRoot = find(q);
+        if (pRoot.equals(qRoot)) return;
+        if (sizeList.get(pRoot) < sizeList.get(qRoot)) {
+            idList.set(pRoot, qRoot);
+            sizeList.set(qRoot, sizeList.get(qRoot)+1);
+        } else {
+            idList.set(qRoot, pRoot);
+            sizeList.set(pRoot, sizeList.get(pRoot)+1);
+        }
+        count--;
+    }
+
+    public Integer count() {
+        return count;
+    }
+}
+```
+
+###### 性质
+
+
+
+#### 比较
+
+###### 特点
+
+<img title="" src="../images/uf_compare.png" alt="">
+
+###### 总成本
+
+![](../images/uf_cost_compare.png)
+
+
+
+## 资料
+
+- Algorithms 4.0 version by Robert Sedgewick
+
+- https://oi-wiki.org/
+
+- https://github.com/aistrate/AlgorithmsSedgewick
