@@ -94,14 +94,16 @@ public static Integer gcd(Integer a, Integer b) {
 
 - 不稳定排序，相等元素的相对顺序可能会改变
 - 在实践中，几乎不可能达到最坏情况，而快速排序的内存访问遵循局部性原理，所以多数情况下快速排序的表现大幅优于堆排序等其他复杂度为 O(nlogn) 的排序算法
+- 缓存友好：由于快速排序是一种局部性很好的算法，它在处理数据时通常会访问连续的内存地址，这有利于利用现代计算机的缓存机制，减少内存访问次数，提高排序性能
+- 可优化性：快速排序是一种灵活的算法，可以通过优化分区策略、基准元素的选择等方式来提高性能。例如，使用三路快排或随机化选择基准元素等方法可以改善快速排序在特定情况下的性能。
 
-<img title="" src="../images/quick_sort_omicron.png" alt="" width="978" data-align="left">
+<img title="" src="../images/rr.png" alt="">
+
+<img title="" src="../images/qs_omicron_1.png" alt="" width="865" data-align="inline">
 
 ## 动态连通性
 
 ### 描述
-
-- 设计一个数据结构来保存已知的所有整数对的足够多的信息，并且用它来判断新的整数对是否相连
 
 - 触点：单个对象的网络方面用语
 
@@ -110,6 +112,8 @@ public static Integer gcd(Integer a, Integer b) {
 - 等价类：p、q相连，q、r相连，则p、q、r属于同一个等价类
 
 - 连通分量：等价类称为连通分量，简称分量
+
+- 设计一个数据结构来保存已知的所有整数对的足够多的信息，并且用它来判断新的整数对是否相连，将这个问题通俗的地叫做动态连通性问题
 
 <img title="" src="../images/dce.png" alt="" width="989" data-align="left">
 
@@ -121,7 +125,7 @@ public static Integer gcd(Integer a, Integer b) {
 
 #### 过程
 
-- 保证当且仅当id[p]等于id[q]时，p、q是连通的。即在同一个连通分量中，所有触点在idList[]中的值必须相同
+- 保证当且仅当id[p]等于id[q]时，p、q是连通的。即在同一个连通分量中，所有触点在id[]中的值必须相同
 
 #### 实现
 
@@ -175,9 +179,9 @@ public class QuickFind {
 
 #### 过程
 
-- 基于相同的数据结构，以触点为索引的idList[]数组
+- 基于相同的数据结构，以触点为索引的id[]数组
 
-- 链接：每个触点所对应的idList[]元素都是同一个分量中的另一个触点的名称（或者它自己）
+- 链接：每个触点所对应的id[]元素都是同一个分量中的另一个触点的名称（默认自己）
 
 - 根触点：在实现find()方法时，从给定的触点开始，由它的链接得到另一个触点，再由这个触点链接到第三个触点，直到达到一个根触点，即链接指向自己的触点
 
@@ -232,12 +236,14 @@ public class QuickUnion {
 
 #### 性质
 
-- idList用父链接的形式表示了一片森林。无论我们从任何触点所对应的节点开始跟随链接，最终都将达到含有该节点的树的根节点。可以用归纳法证明这个性质的正确性：在数组被初始化之后，每个节点的链接都指向它自己；如果在某次union()操作之前这条性质成立，那么操作之后它必然也成立
-- 分析quick-union算法的成本比分析quick-find算法的成本更困难，因为这依赖于输人的特点。在最好的情况下，find()只需要访问数组一次就能够得到一个触点所在的分量的标识符；而在最坏情况下，这需要2N-1次数组访问，如图1.5.6中的0触点（这个估计是较为保守的，因为while循环中经过编译的代码对id[p]的第二次引用一般都访问数组）。由此我们不难构造一个最佳情况的输入使得解决动态连通性问题的用例的运行时间是线性级别的；另一方面，我们也可以构造一个最坏情况的输入，此时它的运行时间是平方级别的
+- id[]用父链接的形式表示了一片森林。无论我们从任何触点所对应的节点开始跟随链接，最终都将达到含有该节点的树的根节点。可以用归纳法证明这个性质的正确性：在数组被初始化之后，每个节点的链接都指向它自己；如果在某次union()操作之前这条性质成立，那么操作之后它必然也成立
+- 分析quick-union算法的成本比分析quick-find算法的成本更困难，因为这依赖于输入的特点。在最好的情况下，find()只需要访问数组一次就能够得到一个触点所在的分量的标识符；而在最坏情况下，这需要2N-1次数组访问，如图1.5.6中的0触点（这个估计是较为保守的，因为while循环中经过编译的代码对id[p]的第二次引用一般都访问数组）。由此我们不难构造一个最佳情况的输入使得解决动态连通性问题的用例的运行时间是线性级别的；另一方面，我们也可以构造一个最坏情况的输入，此时它的运行时间是平方级别的
 
-<img title="" src="../images/qu_worst_33.png" alt="" data-align="left">
+<img title="" src="../images/qu_worst_33.png" alt="" data-align="left" width="814">
 
-<img title="" src="../images/qu_worst_2.png" alt="" data-align="left">
+<img title="" src="../images/qu_plus.png" alt="">
+
+<img title="" src="../images/qu_worst_2.png" alt="" data-align="left" width="813">
 
 ### weight-quick-union
 
@@ -290,10 +296,10 @@ public class WeightQuickUnion {
         if (pRoot.equals(qRoot)) return;
         if (sizeList.get(pRoot) < sizeList.get(qRoot)) {
             idList.set(pRoot, qRoot);
-            sizeList.set(qRoot, sizeList.get(qRoot)+1);
+            sizeList.set(qRoot, sizeList.get(qRoot) + sizeList.get(pRoot));
         } else {
             idList.set(qRoot, pRoot);
-            sizeList.set(pRoot, sizeList.get(pRoot)+1);
+            sizeList.set(pRoot, sizeList.get(pRoot) + sizeList.get(qRoot));
         }
         count--;
     }
