@@ -312,22 +312,48 @@ public class WeightQuickUnion {
 
 #### 性质
 
+<img title="" src="../images/compare_001.png" alt="">
+
 ### 比较
 
 #### 特点
 
-<img title="" src="../images/uf_compare.png" alt="" width="880" data-align="left">
+<img title="" src="../images/compare_002.png" alt="" width="880" data-align="left">
 
-#### 总成本
+#### 均摊成本
 
 <img src="../images/uf_cost_compare.png" title="" alt="" data-align="left">
 
+<img title="" src="../images/compare.png" alt="">
+
+## 扩展
+
+- 扩展欧几里得算法
+  - **模逆的计算**、RSA算法中的密钥生成过程、中国剩余定理
+- 多路快速排序（分治）
+  - 二路快排：分别从前后操作排序
+  - 三路快排：分别从前后操作排序，相等的元素不变
+- 路径压缩加权quick-union算法
+  - **双通实现(Two-pass implementation)：先找到根节点，然后使得所有节点都指向根节点。**
+  - **- 简化单通变体（路径减半）Simpler one-pass variant ：使路径中的每一个其他节点指向它的爷爷节点,即$id[i] = id[id[i]]$;**
+
+## 展望
+
+```textile
+只要可能，我们在本书中研究各种基础问题时都会遵循类似于本节中讨论union-find问题时的基本步骤，在这里我们要再次
+强调它们
+```
+
+<img title="" src="../images/last_001.png" alt="">
+
 ## 资料
 
-- Algorithms 4.0 version by Robert Sedgewick
+- [Algorithms 4.0 version by Robert Sedgewick](https://drive.google.com/file/d/0B9_PJNHU4_-dcTJLOHJjQkZrbDg/view?pli=1&resourcekey=0-G7JAF1EIgOcdoQR4hfOcEw)
 
 - https://oi-wiki.org/
 
 - https://github.com/aistrate/AlgorithmsSedgewick
 
 - [排序算法之 快速排序 及其时间复杂度和空间复杂度 - 酷酷的排球 - 博客园](https://www.cnblogs.com/01black-white/p/17213814.html)
+
+- [算法分析（2）-Union-Find算法分析以及路径压缩优化 - 算法坞 - 博客园](https://www.cnblogs.com/suanfawu/p/14386506.html)
